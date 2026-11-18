@@ -1,6 +1,8 @@
-# Corvo procurement workspace
+# Cantil Convo Engineering task
 
 A policy-driven procurement application for chat requests, buyer review, versioned policy amendments, batch decisions and preferred-supplier exports. Built for the Cantill full-stack assessment.
+
+Repository name: `Cantil-Convo-Engineering-task`. The application's fictional company is Corvo Engineering.
 
 ## What is included
 
