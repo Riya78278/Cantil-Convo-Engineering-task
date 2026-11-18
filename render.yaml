@@ -3,7 +3,7 @@ services:
   - type: web
     name: corvo-procurement
     runtime: docker
-    plan: 0.5c-512mb
+    plan: free
     region: singapore
     healthCheckPath: /
     autoDeployTrigger: 'off'
