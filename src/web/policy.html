@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corvo · Procurement policy</title><link rel="stylesheet" href="/policy.css"><script src="/policy.js" defer></script></head>
+<body>
+<header><a href="/" class="brand">CORVO <span>Engineering</span></a><a href="/">Back to workspace</a></header>
+<main>
+<div class="heading"><div><p class="eyebrow">Policy management</p><h1>Review the change.<br>Keep the reasoning.</h1>
+<p class="intro">Create a draft, check its rules, then approve it from the effective date.</p></div>
+<div class="identity"><label for="actor">Signed-in reviewer</label><input id="actor" placeholder="Procurement reviewer" autocomplete="name"></div></div>
+<div id="message" role="status" aria-live="polite"></div>
+<div class="layout">
+<section class="panel"><h2>Propose an amendment</h2>
+<form id="proposal">
+<label for="base">Base policy</label><select id="base"></select>
+<div class="two"><div><label for="version">New version</label><input id="version" required placeholder="5.1"></div>
+<div><label for="effective">Effective from</label><input id="effective" type="date" required></div></div>
+<label for="amendment">Describe the change</label>
+<textarea id="amendment" rows="5" placeholder="Set spot limit to INR 150000"></textarea>
+<p class="hint">Put each change on a new line. Unrecognized statements stay visible for review.</p>
+<label for="document">Or upload a policy document</label><input id="document" type="file" accept=".pdf,.txt,.md,.json">
+<button type="submit" class="primary">Create review draft</button>
+</form>
+<details><summary>Supported amendment examples</summary>
+<pre>Set spot limit to INR 150000
+Set emergency limit to 4 lakh
+Set clubbing window to 10 days
+Move clause 5.3 before clause 5.2
+Add clause 5.0a before clause 5.2: for plant CHK1 and category Safety, require RFQ, suggest 3</pre>
+<p>PDFs need readable text. Full policy JSON is supported. For other wording, use the draft editor to capture the intended rule.</p></details>
+<h2 class="separated">Version history</h2><div id="versions"></div>
+<h2 class="separated">Saved drafts</h2><div id="drafts"></div>
+</section>
+<section class="panel review">
+<div id="empty"><div class="document-symbol" aria-hidden="true">≡</div><h2>Your changes appear here</h2>
+<p>Compare the proposal with its base policy before making it available to the decision engine.</p></div>
+<div id="review" hidden>
+<div class="review-heading"><h2 id="draft-title"></h2><span class="pill" id="draft-status"></span></div>
+<p id="source-name" class="hint"></p>
+<div id="unresolved-box" class="warning" hidden><h3>Statements to resolve</h3><ul id="unresolved"></ul>
+<p>Check these statements against the source and correct the rules below before approval.</p></div>
+<h3>Changes from the base policy</h3><ul id="changes"></ul>
+<details><summary>Source document text</summary><pre id="source"></pre></details>
+<div class="editor-title"><h3>Rules in evaluation order</h3><button id="add-rule" type="button">Add rule</button></div>
+<p class="hint">The first matching rule decides the route. Earlier rules have priority.</p>
+<div id="rules"></div>
+<details><summary>Complete policy editor · limits, windows and conditions</summary>
+<label for="policy-json">Policy JSON</label><textarea id="policy-json" rows="18" spellcheck="false"></textarea>
+<button id="apply-json" type="button">Apply editor to draft</button>
+<p class="hint">Apply the editor before saving. All conditions are validated by the server.</p></details>
+<label class="check"><input type="checkbox" id="reviewed"><span>I checked the source, resolved any extraction gaps and reviewed the proposed rules.</span></label>
+<div class="actions"><button id="save" class="primary">Save reviewed draft</button><button id="approve" disabled>Approve policy</button></div>
+<p id="approval-help" class="hint"></p>
+<details><summary>Audit history</summary><div id="audit"></div></details>
+</div>
+</section>
+</div>
+<section class="panel batch"><h2>Check a batch against an approved policy</h2><p>Every run starts from the imported opening balances.</p>
+<form id="batch-form"><div class="batch-controls"><div><label for="run-policy">Policy timeline through</label><select id="run-policy"></select></div>
+<div><label for="batch-file">Purchase request CSV</label><input id="batch-file" type="file" accept=".csv" required></div>
+<button class="primary" type="submit">Process batch</button></div></form>
+<div id="batch-result"></div></section>
+<section class="panel batch"><h2>Export preferred suppliers</h2>
+<p>Download up to three ranked suppliers per item. Use the as-of date specified for your evaluation. This export does not place orders or change balances.</p>
+<form id="preferred-form"><div class="batch-controls">
+<div><label for="preferred-date">As-of date</label><input id="preferred-date" type="date" required></div>
+<div><label for="preferred-policy">Policy timeline through</label><select id="preferred-policy"></select></div>
+<button class="primary" type="submit">Download preferred suppliers CSV</button>
+</div></form><p id="preferred-result" role="status"></p></section>
+</main><footer>Corvo Engineering · Procurement policy review</footer>
+</body></html>

@@ -1,0 +1,16 @@
+# Review the paid plans in Render before applying this Blueprint.
+services:
+  - type: web
+    name: corvo-procurement
+    runtime: docker
+    plan: 0.5c-512mb
+    region: singapore
+    healthCheckPath: /
+    autoDeployTrigger: 'off'
+    envVars:
+      - key: DATABASE_URL
+        sync: false # Set the Neon direct connection URL privately in Render.
+      - key: PGSSLMODE
+        value: require
+      - key: CORVO_SECURE_COOKIES
+        value: '1'

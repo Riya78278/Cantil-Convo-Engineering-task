@@ -1,0 +1,23 @@
+name: Public source checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  synthetic-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: Synthetic tests only (no private kit)
+        run: |
+          python -B tests/check_preferred_export.py
+          python -B tests/check_deployment.py
+      - name: Check browser scripts
+        run: |
+          node --check src/web/policy.js
+          node --check src/web/workspace.js
+      - name: Build isolated deployment image
+        run: docker build -t corvo-ci .

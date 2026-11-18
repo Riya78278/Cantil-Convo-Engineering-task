@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Corvo · Purchase workspace</title><link rel="stylesheet" href="/policy.css"><link rel="stylesheet" href="/workspace.css">
+<script src="/workspace.js" defer></script></head>
+<body>
+<header><a href="/" class="brand">CORVO <span>Engineering</span></a><div id="account" hidden><span id="signed-in"></span><button id="logout">Sign out</button></div></header>
+<main>
+<section id="login-panel" class="panel login">
+<p class="eyebrow">Purchase workspace</p><h1>A clear path<br>from need to order.</h1>
+<p>Sign in to request materials or review procurement decisions.</p>
+<form id="login-form"><label for="username">Username</label><input id="username" autocomplete="username" required>
+<label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required>
+<button class="primary">Sign in</button></form>
+<p class="hint">Use an account provisioned for your employee, buyer or Procurement role.</p>
+</section>
+<div id="message" role="status" aria-live="polite"></div>
+<div id="workspace" hidden>
+<nav aria-label="Workspace"><button id="nav-chat">Request an item</button><button id="nav-buyer">Buyer review</button><button id="nav-documents">Orders & sourcing</button><a id="nav-policy" href="/policy">Policy management ↗</a></nav>
+<section id="chat-panel">
+<div class="heading"><div><p class="eyebrow">Employee requests</p><h1>What do you need?</h1><p class="intro">Describe your request. We’ll check the details with you before submitting.</p></div><button id="new-chat">New request</button></div>
+<div class="chat-layout"><div class="panel chat-box"><div id="conversation" aria-live="polite"></div>
+<div id="choices"></div>
+<div id="confirmation" hidden><p id="confirmation-text"></p><button class="primary" id="confirm-request">Confirm request</button></div>
+<form id="chat-form"><label for="chat-text">Your message</label><div class="composer"><textarea id="chat-text" rows="2" placeholder="Need 200 nitrile gloves for Chakan by next Friday" required></textarea><button class="primary">Send</button></div></form>
+</div><aside class="panel"><h2>My requests</h2><div id="my-requests"></div></aside></div>
+</section>
+<section id="buyer-panel" hidden>
+<div class="heading"><div><p class="eyebrow">Buyer review</p><h1>Decisions with evidence.</h1><p class="intro">Inspect a requirement, review its source, then approve or explain an override.</p></div><button class="primary" id="evaluate-chat">Evaluate pending chat requests</button></div>
+<div class="panel intake"><form id="upload-form"><div><label for="batch-file">PR batch CSV</label><input id="batch-file" type="file" accept=".csv" required></div><div><label for="policy-version">Policy timeline through</label><select id="policy-version"></select></div><button class="primary">Process batch</button></form></div>
+<div class="buyer-layout"><aside class="panel"><h2>Evaluation runs</h2><button id="refresh-runs">Refresh runs</button><div id="runs"></div></aside>
+<div class="panel"><h2 id="requirements-title">Select an evaluation run</h2><div id="requirements"></div><div id="rejections"></div></div></div>
+<section class="panel requirement-detail" id="detail" hidden>
+<div class="review-heading"><h2 id="detail-title"></h2><span class="pill" id="detail-status"></span></div>
+<div id="decision-summary"></div>
+<h3>PR lines in this requirement</h3><div class="table-scroll"><table><thead><tr><th>PR / line</th><th>Item</th><th>Quantity</th><th>Plant</th><th>Need by</th><th>Urgency</th></tr></thead><tbody id="input-lines"></tbody></table></div>
+<details><summary>Supplier ranking and price evidence</summary><div id="ranking"></div></details>
+<details><summary>Original engine recommendation</summary><p id="original"></p></details>
+<div id="approval-controls"><label class="check"><input type="checkbox" id="capex"><span>Capex approval has been obtained and is recorded with this action.</span></label>
+<button id="approve-request" class="primary">Approve requirement</button>
+<details><summary>Override this decision</summary>
+<form id="override-form"><div class="two"><div><label for="override-route">New route</label><select id="override-route"><option>RFQ</option><option>RFP</option><option>CAPEX_SOURCING</option><option>NEW_ITEM_SOURCING</option><option>SPOT_PO</option><option>EMERGENCY_PO</option><option>CONTRACT_PO</option></select></div>
+<div><label for="override-supplier">Supplier for a PO</label><select id="override-supplier"><option value="">Select Active supplier</option></select></div></div>
+<div class="two"><div><label for="override-price">PO unit price · INR excluding GST</label><input id="override-price" type="number" min="0" step="0.01"></div>
+<div><label for="override-contract">Contract ID for a contract PO</label><input id="override-contract"></div></div>
+<label for="override-comment">Why is an override needed?</label><textarea id="override-comment" required rows="3"></textarea><button>Save override for review</button></form></details></div>
+<details><summary>Action history</summary><div id="group-audit"></div></details>
+</section>
+</section>
+<section id="documents-panel" hidden><div class="heading"><div><p class="eyebrow">Approved documents</p><h1>Orders & sourcing.</h1></div><button id="refresh-documents">Refresh documents</button></div><div id="documents"></div></section>
+</div>
+</main><footer>Corvo Engineering · All amounts exclude GST</footer></body></html>

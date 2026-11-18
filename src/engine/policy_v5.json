@@ -1,0 +1,131 @@
+{
+  "version": "5.0",
+  "effective_date": "2026-04-01",
+  "creation_days": 14,
+  "need_by_days": 7,
+  "po_hours": 24,
+  "history_days": 365,
+  "preferred_days": 548,
+  "ranking_weights": {
+    "frequency": "0.40",
+    "recency": "0.25",
+    "contract": "0.15",
+    "delivery": "0.10",
+    "quality": "0.10"
+  },
+  "rules": [
+    {
+      "clause": "1.2",
+      "route": "NEW_ITEM_SOURCING",
+      "when": {
+        "all": [
+          {
+            "field": "new_item",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      "suggestions": 0
+    },
+    {
+      "clause": "5.1",
+      "route": "CAPEX_SOURCING",
+      "when": {
+        "all": [
+          {
+            "field": "item_type",
+            "op": "eq",
+            "value": "Capex"
+          }
+        ]
+      },
+      "suggestions": 5
+    },
+    {
+      "clause": "5.2",
+      "route": "CONTRACT_PO",
+      "when": {
+        "all": [
+          {
+            "field": "has_contract",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      "suggestions": 0
+    },
+    {
+      "clause": "5.3",
+      "route": "EMERGENCY_PO",
+      "when": {
+        "all": [
+          {
+            "field": "emergency",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "field": "value",
+            "op": "lte",
+            "value": "500000"
+          },
+          {
+            "field": "has_history",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      "suggestions": 0
+    },
+    {
+      "clause": "5.4",
+      "route": "SPOT_PO",
+      "when": {
+        "all": [
+          {
+            "field": "value",
+            "op": "lt",
+            "value": "200000"
+          },
+          {
+            "field": "has_history",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      "suggestions": 0
+    },
+    {
+      "clause": "5.5",
+      "route": "RFQ",
+      "when": {
+        "all": [
+          {
+            "field": "value",
+            "op": "lt",
+            "value": "1000000"
+          }
+        ]
+      },
+      "suggestions": 3
+    },
+    {
+      "clause": "5.6",
+      "route": "RFP",
+      "when": {
+        "all": [
+          {
+            "field": "value",
+            "op": "gte",
+            "value": "1000000"
+          }
+        ]
+      },
+      "suggestions": 5
+    }
+  ]
+}
