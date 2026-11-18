@@ -4,6 +4,16 @@ A policy-driven procurement application for chat requests, buyer review, version
 
 Repository name: `Cantil-Convo-Engineering-task`. The application's fictional company is Corvo Engineering.
 
+## Evaluator access
+
+Hosted app: https://corvo-procurement-jbff.onrender.com/
+
+Username: " reviewer ". 
+Password: " user@123456789 "
+
+Use Policy management to test batch uploads, policy amendments,
+and CSV exports.
+
 ## What is included
 
 - One-item conversational intake with catalogue matching, clarification and explicit confirmation.
@@ -85,6 +95,7 @@ yourname__preferred.csv
 ```
 
 Replace `yourname` with the candidate name. Practice exports are not final submissions. Freeze and record the tested commit before the evaluator's cutoff; afterward, do not modify application code. Auto-deploy is disabled in the Render Blueprint so submission-file pushes do not redeploy the app.
+
 
 ## Scope and limitations
 
